@@ -7,21 +7,27 @@ using namespace std;
 // User function template for C++
 class Solution {
   public:
-    bool twoSum(vector<int>& arr, int target) {
-        unordered_map <int,int> mpp;
-        for(int i = 0 ; i < arr.size() ; i++)
-        {
-           int rem = target - arr[i];
-            if(mpp.find(rem)!=mpp.end())
-            {
-                return true;
-            }
-          
-            mpp[arr[i]] = i;
-              //key    //index
+    bool twoSum(vector<int>& nums, int target) {
+        sort(nums.begin() , nums.end());
+        int left=0 , right = nums.size()-1;
+   while(left<right)
+   {
+    int sum = nums[left] + nums[right] ;
+    if(sum==target)
+    {
+        return true;
+    }
+    if(target<sum)
+    {
+        right--;
+    }
+    else
+    {
+        left++;
+    }
+   }
+   return false;
 
-        }
-        return false;
     }
     
 };
