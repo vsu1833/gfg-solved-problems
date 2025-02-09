@@ -8,19 +8,21 @@ using namespace std;
 class Solution {
   public:
     bool twoSum(vector<int>& arr, int target) {
-        // code here
-       unordered_set<int> seen;
-        for (int num : arr) {
-            // Check if the complement (target - num) exists in the set.
-            if (seen.find(target - num) != seen.end()) {
+        unordered_map <int,int> mpp;
+        for(int i = 0 ; i < arr.size() ; i++)
+        {
+           int rem = target - arr[i];
+            if(mpp.find(rem)!=mpp.end())
+            {
                 return true;
             }
-            // Otherwise, add the current number to the set.
-            seen.insert(num);
+          
+            mpp[arr[i]] = i;
+              //key    //index
+
         }
-        // If no valid pair is found, return false.
         return false;
-    } 
+    }
     
 };
 
