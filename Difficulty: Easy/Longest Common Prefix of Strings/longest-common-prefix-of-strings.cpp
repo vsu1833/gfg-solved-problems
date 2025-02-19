@@ -11,14 +11,22 @@ class Solution {
   public:
     string longestCommonPrefix(vector<string>strs) {
          if (strs.empty()) return "";
-        string prefix = strs[0];
-        for (int i = 1; i < strs.size(); i++) {
-            while (strs[i].find(prefix) != 0) {
-                prefix = prefix.substr(0, prefix.size() - 1);
-                if (prefix.empty()) return "";
+         int n = strs.size();
+         sort(strs.begin() , strs.end());
+         string start = strs[0];
+         string end = strs[n-1];
+         string ans;
+         for(int i = 0 ; i < min(start.size(),end.size()); i++)
+         {
+            if(start[i]==end[i])
+            {
+                ans=ans+start[i];
             }
-        }
-        return prefix;
+            else
+            break;
+         }
+         return ans;
+       
     
     }
 };
