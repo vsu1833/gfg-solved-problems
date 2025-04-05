@@ -6,23 +6,25 @@ using namespace std;
 
 class Solution {
   public:
-   int countSubstring(string s) {
-    int n = s.length();
-    int lastA = -1, lastB = -1, lastC = -1;
-    long long count = 0;
-    
-    for(int i = 0; i < n; i++) {
-        if(s[i] == 'a') lastA = i;
-        else if(s[i] == 'b') lastB = i;
-        else if(s[i] == 'c') lastC = i;
-        
-        if(lastA != -1 && lastB != -1 && lastC != -1) {
-            count += min(lastA, min(lastB, lastC)) + 1;
-        }
-    }
-    
-    return count;
-}
+   int countSubstring(string s) 
+   {
+       int cnt = 0;
+       int n = s.size();
+       for(int i = 0 ; i < s.size() ; i++)
+       {
+           int hash[3]={0};
+           for(int j = i ; j < s.size() ; j++)
+           {
+               hash[s[j]-'a']=1;
+               if(hash[0]+hash[1]+hash[2]==3)
+               {
+                   cnt=cnt+(n-j);
+                   break;
+               }
+           }
+       }
+       return cnt;
+   }
 };
 
 
