@@ -4,32 +4,56 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution {
   public:
- void mergeArrays(vector<int>& a, vector<int>& b) {
-    int n = a.size(), m = b.size();
-    int gap = (n + m) / 2 + (n + m) % 2;
-
-    while (gap > 0) {
-        int i = 0,j = gap;
+    void mergeArrays(vector<int>& a, vector<int>& b) {
+        // code here
+        int m = a.size();
+        int n = b.size();
         
-        while (j < (n + m)) {
-            if (j < n) {
-                if (a[i] > a[j]) swap(a[i], a[j]);
-            } else if (i < n) {
-                if (a[i]> b[j - n]) swap(a[i], b[j - n]);
-            } else {
-                if (b[i -n] > b[j - n]) swap(b[i - n], b[j - n]);
+        vector<int> ans;
+        
+        int i=0;
+        int j=0;
+        
+        while(i < m && j < n)  {
+            if(a[i] < b[j]) {
+                ans.push_back(a[i]);
+                i++;
             }
-            i++;
-            j++;
+            else {
+                ans.push_back(b[j]);
+                j++;
+            }
         }
-
-        if (gap == 1) break;
-        gap = (gap / 2) + (gap % 2);
+        
+        while(i < m) {
+             ans.push_back(a[i]);
+                i++;
+        }
+        
+        while(j < n) {
+             ans.push_back(b[j]);
+                j++;
+        }
+        
+        //put the elements ans in the array a and b
+        i=0;
+        while(i < m) {
+            a[i] = ans[i];
+            i++;
+        }
+        j=0;
+        while(j < n) {
+            b[j] = ans[i];
+            j++;
+            i++;
+        }
+        
     }
-}
 };
+
 
 //{ Driver Code Starts.
 
